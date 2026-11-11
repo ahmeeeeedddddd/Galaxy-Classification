@@ -72,7 +72,7 @@ test_loader = DataLoader(
 # ── 2. Load model ────────────────────────────────────────────────────────────
 print(f"Loading model from {MODEL_PATH}...")
 model = GalaxyCNN().to(device)
-model.load_state_dict(torch.load(MODEL_PATH, map_location=device))
+model.load_state_dict(torch.load(MODEL_PATH, map_location=device, weights_only=True))
 model.eval()
 
 # ── 3. Run inference ─────────────────────────────────────────────────────────
