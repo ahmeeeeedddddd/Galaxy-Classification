@@ -7,6 +7,9 @@ outputs/
 *.npz
 *.pth
 
+# Explanation document (internal team reference, not for the repo)
+EXPLANATION.md
+
 # Python cache
 __pycache__/
 *.pyc
