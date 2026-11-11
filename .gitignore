@@ -1,0 +1,21 @@
+# Ignore large data files — do NOT commit these to GitHub
+data/
+outputs/
+
+# The original .h5 dataset lives on D:\ — never commit it
+*.h5
+*.npz
+*.pth
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# VS Code / editor
+.vscode/
+.idea/
+
+# Windows
+Thumbs.db
+desktop.ini

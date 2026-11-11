@@ -1,0 +1,18 @@
+# Requirements for Galaxy10 DECaLS CNN project
+# Install into your environment with:
+#   D:\Gpu-shit\nasa\Scripts\pip.exe install -r requirements.txt
+
+# Core deep learning
+torch>=2.5.0          # already installed with CUDA 12.1 in the venv
+torchvision           # not used for models, but useful for sanity checks
+
+# Data handling
+h5py>=3.0             # read the .h5 dataset file
+numpy>=1.26           # array operations
+Pillow>=10.0          # image resizing in prepare_data.py
+
+# Evaluation metrics
+scikit-learn>=1.3     # classification_report, confusion_matrix
+
+# Plotting
+matplotlib>=3.8       # loss curves, confusion matrix, grids
