@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Model Statistics & Plots</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0; padding: 24px;
+      background: #0f172a; color: #f8fafc;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    nav { margin-bottom: 24px; display: flex; gap: 16px; border-bottom: 1px solid #334155; padding-bottom: 12px; }
+    nav a { color: #38bdf8; text-decoration: none; font-weight: 600; font-size: 15px; }
+    nav a:hover { text-decoration: underline; }
+    .card {
+      background: #1e293b; border-radius: 12px; padding: 24px;
+      border: 1px solid #334155; margin-bottom: 24px;
+    }
+    h1, h2 { margin-top: 0; }
+    .plot-img {
+      width: 100%; max-width: 100%; border-radius: 8px;
+      margin-top: 12px; border: 1px solid #475569;
+    }
+    .alert-box {
+      background: #334155; padding: 12px 16px; border-radius: 6px;
+      color: #cbd5e1; font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a href="/">Test Image Classifier</a>
+      <a href="/stats">Model Metrics & Plots</a>
+    </nav>
+
+    <h1>Model Statistics & Training Visualisations</h1>
+
+    <!-- 1. Training Curves -->
+    <div class="card">
+      <h2>1. Training & Validation Curves (Loss & Accuracy)</h2>
+      {% if curves_exist %}
+        <img class="plot-img" src="{{ url_for('output_file', filename='curves.png') }}" alt="Training Curves">
+      {% else %}
+        <div class="alert-box">Training curves (<code>outputs/curves.png</code>) not generated yet. They will appear here once <code>train.py</code> completes.</div>
+      {% endif %}
+    </div>
+
+    <!-- 2. Confusion Matrix -->
+    <div class="card">
+      <h2>2. Test Set Confusion Matrix</h2>
+      {% if cm_exist %}
+        <img class="plot-img" src="{{ url_for('output_file', filename='confusion_matrix.png') }}" alt="Confusion Matrix">
+      {% else %}
+        <div class="alert-box">Confusion matrix (<code>outputs/confusion_matrix.png</code>) not found. Run <code>evaluate.py</code> after training to produce it.</div>
+      {% endif %}
+    </div>
+
+    <!-- 3. Misclassified Examples -->
+    <div class="card">
+      <h2>3. Misclassified Test Samples</h2>
+      {% if misc_exist %}
+        <img class="plot-img" src="{{ url_for('output_file', filename='misclassified.png') }}" alt="Misclassified Samples">
+      {% else %}
+        <div class="alert-box">Misclassified examples (<code>outputs/misclassified.png</code>) not found. Run <code>evaluate.py</code> after training to produce it.</div>
+      {% endif %}
+    </div>
+
+    <!-- 4. Class Grid -->
+    <div class="card">
+      <h2>4. Galaxy Classes Grid (Sample per Class)</h2>
+      {% if grid_exist %}
+        <img class="plot-img" src="{{ url_for('output_file', filename='class_grid.png') }}" alt="Class Grid">
+      {% else %}
+        <div class="alert-box">Class grid (<code>outputs/class_grid.png</code>) not found. Run <code>inspect_data.py</code> to produce it.</div>
+      {% endif %}
+    </div>
+
+  </div>
+</body>
+</html>
